@@ -1,20 +1,18 @@
 const express = require('express');
 const path = require('path');
-const users = require('./routes/users');
-const cards = require('./routes/cards');
+const usersRouter = require('./routes/usersRouter');
+const cardsRouter = require('./routes/cardsRouter');
+const notFoundRouter = require('./routes/notFoundRouter');
 
 const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/', users);
-app.use('/', cards);
-app.use('*', (req, res) => {
-  res
-    .status(404)
-    .send({ message: 'Запрашиваемый ресурс не найден' });
-});
+app.use('/', usersRouter);
+app.use('/', cardsRouter);
+app.use('*', notFoundRouter);
 
 app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
   console.log(`App listening on port ${PORT}`);
 });
