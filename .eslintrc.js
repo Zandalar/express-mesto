@@ -11,5 +11,8 @@ module.exports = {
   },
   rules: {
     _id: 'off',
+    'array-callback-return': 'off',
+    'no-underscore-dangle': 'off',
+    'no-console': 'off',
   },
 };
