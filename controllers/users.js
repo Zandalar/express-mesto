@@ -11,7 +11,12 @@ function getUsersList(req, res) {
       }
       return res.status(200).send(data);
     })
-    .catch(() => res.status(500).send({ message: 'Сервер не отвечает' }));
+    .catch((err) => {
+      if (err.code === 'ENOENT') {
+        return res.status(404).send({ message: 'Файл не найден' });
+      }
+      return res.status(500).send({ message: 'Внутренняя ошибка сервера' });
+    });
 }
 
 function getUser(req, res) {
@@ -23,7 +28,12 @@ function getUser(req, res) {
       }
       return res.status(200).send(user);
     })
-    .catch(() => res.status(500).send({ message: 'Сервер не отвечает' }));
+    .catch((err) => {
+      if (err.code === 'ENOENT') {
+        return res.status(404).send({ message: 'Файл не найден' });
+      }
+      return res.status(500).send({ message: 'Внутренняя ошибка сервера' });
+    });
 }
 
 module.exports = {
