@@ -16,7 +16,7 @@ function getUsersList(req, res) {
 
 function getUser(req, res) {
   fileReader(filepath)
-    .then((users) => users.find((user) => user._id === req.params.id))
+    .then((data) => data.find((user) => user._id === req.params.id))
     .then((user) => {
       if (!user) {
         return res.status(400).send({ message: 'Нет пользователя с таким id' });

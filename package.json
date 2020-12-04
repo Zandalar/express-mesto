@@ -4,6 +4,7 @@
   "author": "Vitaliy Masich",
   "version": "0.1.0",
   "main": "app.js",
+  "license": "ISC",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
@@ -21,7 +22,6 @@
     "type": "git",
     "url": "git+https://github.com/Zandalar/express-mesto.git"
   },
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/Zandalar/express-mesto/issues"
   },
