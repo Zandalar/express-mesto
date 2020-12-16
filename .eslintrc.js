@@ -12,5 +12,6 @@ module.exports = {
   rules: {
     _id: 'off',
     'no-underscore-dangle': ['error', { allow: ['_id'] }],
+    'no-useless-escape': 'off',
   },
 };
