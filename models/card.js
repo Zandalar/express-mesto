@@ -14,6 +14,7 @@ const cardSchema = new mongoose.Schema({
       validator(v) {
         return /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/.test(v);
       },
+      message: 'Ссылка не корректна. Попробуйте снова',
     },
   },
   owner: {
@@ -21,10 +22,10 @@ const cardSchema = new mongoose.Schema({
     ref: 'user',
     required: true,
   },
-  likes: {
+  likes: [{
     type: mongoose.Schema.Types.ObjectId,
     default: [],
-  },
+  }],
   createdAt: {
     type: Date,
     default: Date.now,

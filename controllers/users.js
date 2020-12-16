@@ -27,7 +27,7 @@ function createUser(req, res) {
   User.create({ name, about, avatar })
     .then((user) => res.status(200).send(user))
     .catch((err) => {
-      if (err.name === 'CastError') {
+      if (err.name === 'ValidationError') {
         return res.status(400).send({ message: `Введите корректные данные: ${err.message}` });
       }
       return res.status(500).send({ message: 'Внутренняя ошибка сервера' });
@@ -43,7 +43,7 @@ function updateUser(req, res) {
   })
     .then((newUser) => res.status(200).send(newUser))
     .catch((err) => {
-      if (err.name === 'CastError') {
+      if (err.name === 'ValidationError') {
         return res.status(400).send({ message: `Введите корректные данные: ${err.message}` });
       }
       return res.status(500).send({ message: 'Внутренняя ошибка сервера' });
@@ -59,7 +59,7 @@ function updateAvatar(req, res) {
   })
     .then((newAvatar) => res.status(200).send(newAvatar))
     .catch((err) => {
-      if (err.name === 'CastError') {
+      if (err.name === 'ValidationError') {
         return res.status(400).send({ message: { message: `Введите корректные данные: ${err.message}` } });
       }
       return res.status(500).send({ message: 'Внутренняя ошибка сервера' });

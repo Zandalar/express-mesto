@@ -12,11 +12,11 @@ function getCards(req, res) {
 }
 
 function createCard(req, res) {
-  const { name, link, ownerId } = req.body;
-  Card.create({ name, link, owner: ownerId })
+  const { name, link } = req.body;
+  Card.create({ name, link, owner: req.user._id })
     .then((card) => res.status(200).send(card))
     .catch((err) => {
-      if (err.name === 'CastError') {
+      if (err.name === 'ValidationError') {
         return res.status(400).send({ message: `Введите корректные данные: ${err.message}` });
       }
       return res.status(500).send({ message: 'Внутренняя ошибка сервера' });

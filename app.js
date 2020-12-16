@@ -18,13 +18,13 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/', usersRouter);
-app.use('/', cardsRouter);
-app.use('*', notFoundRouter);
 app.use((req, res, next) => {
   req.user = { _id: '5fd89307afe94c238ca0f6e9' };
   next();
 });
+app.use('/', usersRouter);
+app.use('/', cardsRouter);
+app.use('*', notFoundRouter);
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console
