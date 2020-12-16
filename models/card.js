@@ -12,7 +12,7 @@ const cardSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(v) {
-        return /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.])([\/\w\.-]*)*\/?$/.test(v);
+        return /^((https?)\\:\/\/)?([a-z0-9]{1})((\.[a-z0-9-])|([a-z0-9-]))*\.([a-z]{2,6})(\/?)$/.test(v);
       },
     },
   },
@@ -29,6 +29,7 @@ const cardSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  versionKey: false,
 });
 
 module.exports = mongoose.model('card', cardSchema);
