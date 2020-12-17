@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const usersRouter = require('./routes/usersRouter');
 const cardsRouter = require('./routes/cardsRouter');
 const notFoundRouter = require('./routes/notFoundRouter');
+const { authMiddleware } = require('./middlewares/auth');
 
 const { PORT = 3000 } = process.env;
 
@@ -18,10 +19,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use((req, res, next) => {
-  req.user = { _id: '5fd89307afe94c238ca0f6e9' };
-  next();
-});
+app.use(authMiddleware);
 app.use('/', usersRouter);
 app.use('/', cardsRouter);
 app.use('*', notFoundRouter);
